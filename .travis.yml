@@ -4,8 +4,6 @@ node_js:
 cache:
   directories:
     - ~/.npm
-node_js:
-  - '10'
 script:
   - yarn ci-lint
   - yarn test
