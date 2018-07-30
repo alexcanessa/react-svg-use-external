@@ -1,6 +1,7 @@
 # react-svg-use-external
 
 [![Build Status](https://travis-ci.com/digital-detox/react-svg-use-external.svg?branch=master)](https://travis-ci.com/digital-detox/react-svg-use-external)
+[![Code coverage](https://img.shields.io/codecov/c/github/digital-detox/react-svg-use-external/master.svg)](https://codecov.io/gh/digital-detox/react-svg-use-external)
 [![npm](https://img.shields.io/npm/v/@digital-detox/react-svg-use-external.svg)](https://www.npmjs.com/package/@digital-detox/react-svg-use-external)
 
 A React library that enables external SVG `<use>` references in all browsers that support SVG.
