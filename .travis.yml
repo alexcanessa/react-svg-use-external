@@ -1,9 +1,18 @@
 language: node_js
 node_js:
   - lts
-
+cache:
+  directories:
+    - ~/.npm
+node_js:
+  - '10'
 script:
   - yarn test
   - yarn build
   - yarn build-demo
   - yarn ci-lint
+after_success:
+  - yarn travis-deploy-once "yarn semantic-release"
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
