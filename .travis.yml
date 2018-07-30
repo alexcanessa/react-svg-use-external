@@ -7,10 +7,10 @@ cache:
 node_js:
   - '10'
 script:
+  - yarn ci-lint
   - yarn test
   - yarn build
   - yarn build-demo
-  - yarn ci-lint
 after_success:
   - yarn travis-deploy-once "yarn semantic-release"
 branches:
