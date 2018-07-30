@@ -1,7 +1,7 @@
 {
   "name": "@digital-detox/react-svg-use-external",
   "publishConfig": {
-    "access": "private"
+    "access": "restricted"
   },
   "description": "A React library that enables external SVG `<use>` references in all browsers that support SVG.",
   "version": "0.0.0-semantic-release",
