@@ -10,8 +10,11 @@ script:
   - yarn test
   - yarn build
   - yarn build-demo
-after_success:
-  - yarn travis-deploy-once "yarn semantic-release"
+deploy:
+  provider: script
+  script: yarn semantic-release
+  on:
+    branch: master
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
