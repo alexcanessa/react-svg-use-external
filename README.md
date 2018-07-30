@@ -11,7 +11,7 @@ Inspired by [SVG for Everybody](https://github.com/jonathantneal/svg4everybody).
 In your React SVG rendering code, replace `<svg>` and `<use>` with `<Svg>` and `<Use>` from this library:
 
 ```jsx
-import { Svg, Use } from "react-svg-use-external";
+import { Svg, Use } from "@digital-detox/react-svg-use-external";
 
 <Svg
   style={{
