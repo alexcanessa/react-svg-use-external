@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+}
+
+.Heading,
+.SelectArea,
+.DemoArea {
+  margin: 1em;
+}
+
+.DemoArea > h2,
+.SelectArea > h2 {
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.DemoArea > svg,
+.SelectArea > select {
+  vertical-align: middle;
+}
+
+.SelectArea > select {
+  font-size: 125%;
+  display: inline-block;
+}
