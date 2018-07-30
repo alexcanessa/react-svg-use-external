@@ -49,5 +49,13 @@
     "url": "https://github.com/digital-detox/react-svg-use-external.git"
   },
   "bugs": "https://github.com/digital-detox/react-svg-use-external/issues",
-  "keywords": ["react", "svg", "external", "use", "svg4everybody", "sprite", "polyfill"]
+  "keywords": [
+    "react",
+    "svg",
+    "external",
+    "use",
+    "svg4everybody",
+    "sprite",
+    "polyfill"
+  ]
 }
