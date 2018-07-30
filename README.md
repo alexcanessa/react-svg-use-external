@@ -38,8 +38,8 @@ This library supports IE 9 and up and should generally match [svg4everybody's br
 
 ## Differences from `svg4everybody`
 
-• There is no fallback to `<img>` (and hence no support for IE < 9).
-• `<use>` references (internal or external) in the imported SVG content aren't resolved recursively.
-• This polyfill observes the strict same-origin policy that all modern browsers apply to `<use>` references (ignoring CORS headers), as formally specified in [SVG 2][].
+- There is no fallback to `<img>` (and hence no support for IE < 9).
+- `<use>` references (internal or external) in the imported SVG content aren't resolved recursively.
+- This polyfill observes the strict same-origin policy that all modern browsers apply to `<use>` references (ignoring CORS headers), as formally specified in [SVG 2][].
 
 [svg 2]: https://www.w3.org/TR/SVG2/struct.html#UseElementHrefAttribute
