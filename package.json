@@ -60,5 +60,11 @@
     "svg4everybody",
     "sprite",
     "polyfill"
-  ]
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/lib/**/*.{js,jsx}",
+      "!/node_modules/"
+    ]
+  }
 }
