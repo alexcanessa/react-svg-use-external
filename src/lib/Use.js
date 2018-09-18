@@ -14,7 +14,8 @@ type Props = {
 
 type State = {
   loaded: boolean,
-  content: ?Array<Node>
+  content: ?Array<Node>,
+  viewBox: ?string
 };
 
 function getHref(props: Props): ?string {
@@ -31,7 +32,7 @@ class Use extends React.Component<Props, State> {
   async _load(href: ?string) {
     if (!href || href[0] === "#") {
       // Our fallback to <use> will do in these cases
-      this.setState({ loaded: false, content: undefined });
+      this.setState({ loaded: false, content: undefined, viewBox: undefined });
       return;
     }
     this._href = href;
@@ -44,7 +45,8 @@ class Use extends React.Component<Props, State> {
 
     this.setState({
       loaded: false,
-      content: undefined // Hygiene
+      content: undefined, // Hygiene
+      viewBox: undefined
     });
 
     // TODO: Remove this in favour of fetch(..., {mode: "same-origin"}) when popular fetch
@@ -94,14 +96,6 @@ class Use extends React.Component<Props, State> {
       // • Make sure to break circular references, in line with the SVG spec.
       // • Generalise most of the code that currently makes up `Use._load`, as it is directly applicable
       //   to resolving external references from a DOM context as well.
-      const {
-        svgContext: { setViewBox }
-      } = this.props;
-
-      const viewBox = template.getAttribute("viewBox");
-      if (viewBox) {
-        setViewBox(viewBox);
-      }
 
       const clone = template.cloneNode(true);
       const contentNodes = [];
@@ -109,9 +103,11 @@ class Use extends React.Component<Props, State> {
         contentNodes.push(clone.removeChild(clone.firstChild));
       }
 
-      this.setState({ loaded: true, content: contentNodes });
+      const viewBox = template.getAttribute("viewBox");
+
+      this.setState({ loaded: true, content: contentNodes, viewBox });
     } else {
-      this.setState({ loaded: true, content: undefined });
+      this.setState({ loaded: true, content: undefined, viewBox: undefined });
     }
   }
 
@@ -134,6 +130,10 @@ class Use extends React.Component<Props, State> {
           }
         }
       }
+    }
+    const { viewBox } = this.state;
+    if (viewBox !== prevState.viewBox) {
+      this.props.svgContext.setViewBox(viewBox);
     }
   }
 
