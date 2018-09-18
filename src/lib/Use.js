@@ -74,9 +74,13 @@ class Use extends React.Component<Props, State> {
     if (!parsedDocument) {
       try {
         parsedDocument = document.implementation.createHTMLDocument("");
-        parsedDocument.body.innerHTML = await (await fetch(resource, {
+        const response = await fetch(resource, {
           mode: "same-origin"
-        })).text();
+        });
+        if (!response.ok) {
+          return; // state is either { loaded: false } or managed by a later request
+        }
+        parsedDocument.body.innerHTML = await response.text();
         parsedDocument.domain = document.domain;
       } catch (e) {
         return; // state is either { loaded: false } or managed by a later request
