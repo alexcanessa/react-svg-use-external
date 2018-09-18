@@ -8,3 +8,7 @@ export default function getCache() {
   }
   return cacheNamespace[CACHE_KEY];
 }
+
+export function resetCache() {
+  delete cacheNamespace[CACHE_KEY];
+}
