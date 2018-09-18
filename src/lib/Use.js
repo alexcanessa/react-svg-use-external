@@ -47,6 +47,8 @@ class Use extends React.Component<Props, State> {
       content: undefined // Hygiene
     });
 
+    // TODO: Remove this in favour of fetch(..., {mode: "same-origin"}) when popular fetch
+    // polyfills actually respect this mode!
     const windowOrigin =
       window.location.origin ||
       // IE < 11
@@ -70,7 +72,9 @@ class Use extends React.Component<Props, State> {
     if (!parsedDocument) {
       try {
         parsedDocument = document.implementation.createHTMLDocument("");
-        parsedDocument.body.innerHTML = await (await fetch(resource)).text();
+        parsedDocument.body.innerHTML = await (await fetch(resource, {
+          mode: "same-origin"
+        })).text();
         parsedDocument.domain = document.domain;
       } catch (e) {
         return; // state is either { loaded: false } or managed by a later request
