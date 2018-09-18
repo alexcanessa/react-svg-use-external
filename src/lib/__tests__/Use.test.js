@@ -120,6 +120,24 @@ describe("Use polyfill", () => {
       await fetchMock.flush();
       expect(fetchMock.called(MATCHED)).toBe(true);
     });
+    test("should request the external resource via relative href", async () => {
+      render(
+        <Svg>
+          <Use href="sprites.svg#symbol-1" />
+        </Svg>
+      );
+      await fetchMock.flush();
+      expect(fetchMock.called(MATCHED)).toBe(true);
+    });
+    test("should request the external resource via relative xlinkHref", async () => {
+      render(
+        <Svg>
+          <Use xlinkHref="/sprites.svg#symbol-1" />
+        </Svg>
+      );
+      await fetchMock.flush();
+      expect(fetchMock.called(MATCHED)).toBe(true);
+    });
     test("should prefer the href prop when requesting a resource", async () => {
       render(
         <Svg>
@@ -187,10 +205,43 @@ describe("Use polyfill", () => {
       await fetchMock.flush();
       expect(fetchMock.calls(MATCHED)).toHaveLength(1);
     });
+    test.skip("should normalise URLs and cache the external resource across synchronous renders", async () => {
+      // FIXME: This inadvertently hits an edge case where rerendering before the response is fully
+      // handled causes an unintended cache miss. TODO: Rewrite internals to use DataLoader
+      // instead.
+      const { rerender } = render(
+        <Svg>
+          <Use href="/sprites.svg#symbol-1" />
+        </Svg>
+      );
+      rerender(
+        <Svg>
+          <Use href="./sprites.svg#symbol-nope" />
+        </Svg>
+      );
+      await fetchMock.flush();
+      expect(fetchMock.calls(MATCHED)).toHaveLength(1);
+    });
     test("should cache the external resource across renders", async () => {
       const { rerender } = render(
         <Svg>
           <Use href="http://localhost/sprites.svg#symbol-1" />
+        </Svg>
+      );
+      await fetchMock.flush();
+      await Promise.resolve();
+      rerender(
+        <Svg>
+          <Use href="http://localhost/sprites.svg#symbol-nope" />
+        </Svg>
+      );
+      await fetchMock.flush();
+      expect(fetchMock.calls(MATCHED)).toHaveLength(1);
+    });
+    test("should normalise URLs and cache the external resource across renders", async () => {
+      const { rerender } = render(
+        <Svg>
+          <Use href="/sprites.svg#symbol-1" />
         </Svg>
       );
       await fetchMock.flush();
