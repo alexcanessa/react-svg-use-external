@@ -13,7 +13,8 @@ type Props = {
 };
 
 type State = {
-  loaded: boolean
+  loaded: boolean,
+  content: ?Array<Node>
 };
 
 function getHref(props: Props): ?string {
@@ -102,15 +103,14 @@ class Use extends React.Component<Props, State> {
       if (viewBox) {
         setViewBox(viewBox);
       }
-      const fragment = document.createDocumentFragment();
 
       const clone = template.cloneNode(true);
-
+      const contentNodes = [];
       while (clone.childNodes.length) {
-        fragment.appendChild(clone.firstChild);
+        contentNodes.push(clone.removeChild(clone.firstChild));
       }
 
-      this.setState({ loaded: true, content: fragment });
+      this.setState({ loaded: true, content: contentNodes });
     } else {
       this.setState({ loaded: true, content: undefined });
     }
@@ -125,12 +125,14 @@ class Use extends React.Component<Props, State> {
     const element = this._element.current;
     if (this.state.loaded && element) {
       const { content } = this.state;
-      if (!content || content.firstChild !== element.firstChild) {
+      if (!content || content[0] !== element.firstChild) {
         while (element.firstChild) {
           element.removeChild(element.firstChild);
         }
-        if (this.state.content) {
-          element.appendChild(this.state.content);
+        if (content) {
+          for (const node of content) {
+            element.appendChild(node);
+          }
         }
       }
     }
