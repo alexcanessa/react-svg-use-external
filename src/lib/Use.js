@@ -34,9 +34,6 @@ class Use extends React.Component<Props, State> {
       this.setState({ loaded: false, content: undefined });
       return;
     }
-    if (this._href === href && this.state.loaded) {
-      return;
-    }
     this._href = href;
     const hrefUrl = url.parse(
       url.resolve(typeof window === "object" ? window.location.href : "", href)
@@ -74,9 +71,7 @@ class Use extends React.Component<Props, State> {
       try {
         parsedDocument = document.implementation.createHTMLDocument("");
         parsedDocument.body.innerHTML = await (await fetch(resource)).text();
-        if (parsedDocument.domain !== document.domain) {
-          parsedDocument.domain = document.domain;
-        }
+        parsedDocument.domain = document.domain;
       } catch (e) {
         return; // state is either { loaded: false } or managed by a later request
       }
