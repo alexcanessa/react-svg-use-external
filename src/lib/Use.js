@@ -78,7 +78,7 @@ class Use extends React.Component<Props, State> {
           mode: "same-origin"
         });
         if (!response.ok) {
-          return; // state is either { loaded: false } or managed by a later request
+          throw new Error(response.statusText);
         }
         parsedDocument.body.innerHTML = await response.text();
         parsedDocument.domain = document.domain;
