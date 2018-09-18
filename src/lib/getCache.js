@@ -1,6 +1,7 @@
 const CACHE_KEY = "__SVG_USE_DOCUMENT_CACHE__";
 
-const cacheNamespace = typeof document === "object" ? document : {};
+const cacheNamespace =
+  typeof document === "object" ? document : /* istanbul ignore next */ {};
 
 export default function getCache() {
   if (!cacheNamespace[CACHE_KEY]) {
