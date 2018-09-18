@@ -21,6 +21,6 @@ describe("Svg", () => {
 
     render(<Svg ref={ref} />);
     expect(ref.current).toBeInstanceOf(Element);
-    expect(ref.current.tagName).toBe("svg");
+    expect(ref.current.tagName).toMatch(/^svg$/i);
   });
 });

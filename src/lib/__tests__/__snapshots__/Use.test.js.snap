@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Use polyfill with external URL should embed the referenced symbol in the output 1`] = `
+<svg
+  viewBox="0 0 20 20"
+>
+  <g>
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL should fall back to <use /> if the request hits a 404 1`] = `
+<svg>
+  <use
+    href="http://localhost/sprites-404.svg"
+  />
+</svg>
+`;
+
+exports[`Use polyfill with external URL should fall back to <use /> if the request hits a network error 1`] = `
+<svg>
+  <use
+    href="http://localhost/sprites-nope.svg"
+  />
+</svg>
+`;
+
+exports[`Use polyfill with external URL should output <g /> if the referenced symbol doesn't exist 1`] = `
+<svg>
+  <g />
+</svg>
+`;
+
+exports[`Use polyfill with external URL should pass props through to the embedded symbol 1`] = `
+<svg
+  viewBox="0 0 20 20"
+>
+  <g
+    data-foo="bar"
+  >
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL should render a plain <use> tag while loading 1`] = `
+<svg>
+  <use
+    href="http://localhost/sprites.svg#symbol-1"
+  />
+</svg>
+`;
+
+exports[`Use polyfill with external URL tracks the latest href despite another fetch completing later 1`] = `
+<svg
+  viewBox="0 0 20 20"
+>
+  <g>
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL tracks the latest href despite another fetch completing sooner 1`] = `
+<svg
+  viewBox="0 0 20 20"
+>
+  <g>
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="green"
+      fill="yellow"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL viewBox should not override Svg's viewBox 1`] = `
+<svg
+  viewBox="1 2 3 4"
+>
+  <g>
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL viewBox should set and clear as appropriate 1`] = `
+<svg
+  viewBox="0 0 20 20"
+>
+  <g>
+    <circle
+      cx="10"
+      cy="10"
+      r="10"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill with external URL viewBox should set and clear as appropriate 2`] = `
+<svg>
+  <g>
+    <ellipse
+      cx="10"
+      cy="10"
+      rx="10"
+      ry="5"
+      stroke="black"
+      fill="red"
+    />
+  </g>
+</svg>
+`;
+
+exports[`Use polyfill without external URL renders a local href 1`] = `
+<use
+  href="#foo"
+/>
+`;
+
+exports[`Use polyfill without external URL renders a local xlink:href 1`] = `
+<use
+  xlink:href="#foo"
+/>
+`;
+
+exports[`Use polyfill without external URL renders both types of xlink:href 1`] = `
+<use
+  xlink:href="#foo"
+/>
+`;
+
+exports[`Use polyfill without external URL should pass through attributes 1`] = `
+<use
+  data-foo="bar"
+  viewbox="0 0 1 1"
+/>
+`;
+
+exports[`Use polyfill without external URL should render a <use> element 1`] = `<use />`;

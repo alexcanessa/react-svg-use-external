@@ -22,6 +22,7 @@
     "codecov": "^3.0.4",
     "core-js": "^2.5.7",
     "entypo": "^2.1.0",
+    "fetch-mock": "^7.0.0-alpha.6",
     "flow-bin": "^0.77.0",
     "git-exec-and-restage": "^1.1.1",
     "husky": "^1.0.0-rc.13",
